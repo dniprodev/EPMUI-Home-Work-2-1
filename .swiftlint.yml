@@ -1,0 +1,65 @@
+# https://realm.github.io/SwiftLint/
+
+disabled_rules:
+  # TODO: Remove next rule after refactoring (as separate PR)
+  - line_length
+  # TODO: Remove next rule after run script (as separate PR)
+  # https://stackoverflow.com/questions/1390329/trim-trailing-spaces-in-xcode
+  - trailing_whitespace
+
+opt_in_rules:
+  - array_init
+  - closure_body_length
+  - collection_alignment
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_first_not_nil
+  - contains_over_range_nil_comparison
+  - empty_collection_literal
+  - empty_count
+  - empty_string
+  - enum_case_associated_values_count
+  - explicit_init
+  - extension_access_modifier
+  - file_name_no_space
+  - first_where
+  - flatmap_over_map_reduce
+  - identical_operands
+  - joined_default_parameter
+  - last_where
+  - legacy_multiple
+  - legacy_random
+  - literal_expression_end_indentation
+  - lower_acl_than_parent
+  - multiline_function_chains
+  - multiline_parameters
+  - operator_usage_whitespace
+  - overridden_super_call
+  - prefer_zero_over_explicit_init
+  - reduce_into
+  - redundant_type_annotation
+  - sorted_first_last
+  - static_operator
+  - toggle_bool
+  - unused_declaration
+  - unused_import
+  - vertical_parameter_alignment_on_call
+  - yoda_condition
+
+included:
+  - UpInterHomeWork21
+
+excluded:
+#  - Pods
+
+# Rules customization
+
+function_body_length:
+  warning: 60
+
+large_tuple:
+  warning: 5
+  error: 8
+
+nesting:
+  type_level: 3

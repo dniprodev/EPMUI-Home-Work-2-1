@@ -1,0 +1,52 @@
+default_platform(:ios)
+
+platform :ios do
+  version = get_version_number()
+  branch = git_branch()
+  scheme = "UpInterHomeWork21"
+  target = "UpInterHomeWork21"
+
+  before_all do
+    start_notification_message()
+  end
+
+  after_all do |lane|
+    finish_notificationk_message()
+  end
+
+  lane :homework do
+  	begin
+  		build_and_test()  		
+  	rescue => exception
+  		on_error(exception)
+  	end
+  end
+
+  lane :build_and_test do
+  	clear_derived_data
+  	xcodebuild(
+  	  project: "UpInterHomeWork21.xcodeproj",
+      scheme: scheme,
+      xcargs: "-configuration 'Debug' -sdk 'iphonesimulator14.0' -destination 'generic/platform=iOS Simulator'"
+    )
+    scan(devices: ["iPhone 11"])
+  end
+
+  lane :start_notification_message do
+    notification_message(message:"Started building")
+  end
+
+  lane :finish_notificationk_message do
+    notification_message(message:"Built")
+  end
+
+  lane :notification_message do |values|
+    message_prefix = values[:message]
+    message = "#{message_prefix}  #{target} from #{branch} branch (v#{version})"
+    notification(title: "UpInterHomeWork21", message: message)
+  end
+
+  def on_error(exception)
+    notification(title: "UpInterHomeWork21", message: "Build failed with exception: #{exception}")
+  end
+end
